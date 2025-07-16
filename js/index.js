@@ -1,64 +1,49 @@
 document.addEventListener("DOMContentLoaded", () => {
   const destinations = [
     {
-      imageUrl: "https://placehold.co/600x400",
-      name: "New York City, USA",
+      category: "beach",
+      name: "Bondi Beach, Australia",
       description:
-        "A vibrant metropolis where skyscrapers meet cultural diversity. Explore the Statue of Liberty, Central Park, and Broadway shows for an unforgettable urban adventure.",
+        "A famous Sydney beach known for its golden sands and surfing culture. Enjoy the coastal walk and vibrant atmosphere.",
+      images: ["https://placehold.co/600x400", "https://placehold.co/600x400"],
     },
     {
-      imageUrl: "https://placehold.co/600x400",
-      name: "Toronto, Canada",
+      category: "beach",
+      name: "Copacabana Beach, Brazil",
       description:
-        "A dynamic city blending modern architecture with natural beauty. Visit the CN Tower, stroll through the Distillery District, and enjoy the serene Toronto Islands.",
+        "A lively Rio de Janeiro beach with stunning views and a lively nightlife. Perfect for sunbathing and samba.",
+      images: ["https://placehold.co/600x400", "https://placehold.co/600x400"],
     },
     {
-      imageUrl: "https://placehold.co/600x400",
-      name: "Paris, France",
+      category: "temple",
+      name: "Angkor Wat, Cambodia",
       description:
-        "The romantic capital of art and cuisine. Discover the Eiffel Tower, Louvre Museum, and charming cafés along the Seine River.",
+        "A majestic Hindu-Buddhist temple complex, a UNESCO site with intricate carvings and serene surroundings.",
+      images: ["https://placehold.co/600x400", "https://placehold.co/600x400"],
     },
     {
-      imageUrl: "https://placehold.co/600x400",
-      name: "Tokyo, Japan",
+      category: "temple",
+      name: "Kinkaku-ji, Japan",
       description:
-        "A fusion of ancient traditions and futuristic innovation. Experience cherry blossoms in Ueno Park, bustling Shibuya Crossing, and exquisite sushi.",
+        "The Golden Pavilion, a Zen Buddhist temple covered in gold leaf, reflecting beautifully on its pond.",
+      images: ["https://placehold.co/600x400", "https://placehold.co/600x400"],
     },
     {
-      imageUrl: "https://placehold.co/600x400",
-      name: "London, UK",
+      category: "country",
+      name: "Japan",
       description:
-        "A historic city with royal charm. See Big Ben, the Tower of London, and explore diverse neighborhoods like Camden Market.",
+        "A land of contrasts with futuristic cities and ancient traditions. Explore Tokyo, Kyoto, and Mount Fuji.",
+      images: [
+        "https://placehold.co/600x400?text",
+        "https://placehold.co/600x400?text",
+      ],
     },
     {
-      imageUrl: "https://placehold.co/600x400",
-      name: "Sydney, Australia",
+      category: "country",
+      name: "Italy",
       description:
-        "A coastal gem with stunning harbors. Climb the Sydney Harbour Bridge, relax at Bondi Beach, and visit the iconic Opera House.",
-    },
-    {
-      imageUrl: "https://placehold.co/600x400",
-      name: "Dubai, UAE",
-      description:
-        "A dazzling blend of luxury and desert. Marvel at the Burj Khalifa, shop in extravagant malls, and enjoy a desert safari.",
-    },
-    {
-      imageUrl: "https://placehold.co/600x400",
-      name: "Rome, Italy",
-      description:
-        "A living museum of ancient history. Wander through the Colosseum, toss a coin in the Trevi Fountain, and savor authentic pasta.",
-    },
-    {
-      imageUrl: "https://placehold.co/600x400",
-      name: "Bangkok, Thailand",
-      description:
-        "A bustling hub of culture and street food. Explore the Grand Palace, float along the Chao Phraya River, and taste spicy pad thai.",
-    },
-    {
-      imageUrl: "https://placehold.co/600x400",
-      name: "Cape Town, South Africa",
-      description:
-        "A scenic paradise with Table Mountain views. Hike the trails, visit the colorful Bo-Kaap, and explore the Cape of Good Hope.",
+        "A cultural treasure with historic cities like Rome, Venice, and Florence, offering art, food, and scenery.",
+      images: ["https://placehold.co/600x400", "https://placehold.co/600x400"],
     },
   ];
 
@@ -78,8 +63,10 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const results = destinations.filter((item) =>
-      item.name.toLowerCase().includes(query)
+    const results = destinations.filter(
+      (item) =>
+        item.name.toLowerCase().includes(query) ||
+        item.category.toLowerCase().includes(query)
     );
 
     if (results.length > 0) {
@@ -87,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const card = document.createElement("div");
         card.classList.add("header__search-results--card");
         card.innerHTML = `
-        <img src="${item.imageUrl}" alt="${item.name}" />
+        <img src="${item.images[0]}" alt="${item.name}" />
         <div class="card__content">
           <p class="card__name">${item.name}</p>
           <p class="card__description">${item.description}</p>
